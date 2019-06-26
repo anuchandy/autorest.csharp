@@ -9,6 +9,7 @@
     <GenerateFullPaths>true</GenerateFullPaths>
     <Common>$(MsBuildThisFileDirectory)</Common>
     <SolutionDir>$(Common)../</SolutionDir>
+    <nowarn>4014,1998</nowarn>
  
     <Copyright>Copyright (c) Microsoft Corporation</Copyright>
 
@@ -60,13 +61,14 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Pluralize.NET" Version="0.1.43" />
     <PackageReference Include="YamlDotNet.Signed" Version="4.2.1" />
     <PackageReference Include="Microsoft.CodeAnalysis" Version="2.3.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="2.3.1" />
     <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.11" />
     <PackageReference Include="Microsoft.Rest.ClientRuntime.Azure" Version="3.3.11" />
-    <PackageReference Include="Microsoft.AutoRest.Common" Version="2.4.43" />
-    <!-- <ProjectReference Include="../../autorest.common/src/autorest.common.csproj" /> -->
+    <!-- <PackageReference Include="Microsoft.AutoRest.Common" Version="2.4.43" /> -->
+    <ProjectReference Include="../autorest.common/src/autorest.common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

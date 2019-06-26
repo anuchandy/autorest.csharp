@@ -34,9 +34,9 @@ namespace AutoRest.CSharp.Model
 
         // the following two properties should be disjoint and their union equal to `Properties`
         [JsonIgnore]
-        public IEnumerable<PropertyCs> InstanceProperties => Properties.OfType<PropertyCs>().Where(p => !p.IsConstant);
+        public virtual IEnumerable<PropertyCs> InstanceProperties => Properties.OfType<PropertyCs>().Where(p => !p.IsConstant);
         [JsonIgnore]
-        public IEnumerable<PropertyCs> ClassProperties => Properties.OfType<PropertyCs>().Where(p => p.IsConstant);
+        public virtual IEnumerable<PropertyCs> ClassProperties => Properties.OfType<PropertyCs>().Where(p => p.IsConstant);
 
         [JsonIgnore]
         public string MethodQualifier => (BaseModelType.ShouldValidateChain()) ? "override" : "virtual";
@@ -80,7 +80,7 @@ namespace AutoRest.CSharp.Model
         /// the property comes from (0 for top-level base class that has properties, 1 for a class derived from that
         /// top-level class, etc.).
         /// </summary>
-        private IEnumerable<InheritedPropertyInfo> AllPropertyTemplateModels
+        protected virtual IEnumerable<InheritedPropertyInfo> AllPropertyTemplateModels
         {
             get
             {
@@ -92,7 +92,7 @@ namespace AutoRest.CSharp.Model
             }
         }
 
-        private class InheritedPropertyInfo
+        protected class InheritedPropertyInfo
         {
             public InheritedPropertyInfo(Property property, int depth)
             {

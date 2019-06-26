@@ -66,6 +66,12 @@ namespace AutoRest.CSharp
                 return false;
             }
 
+            // Don't generate base.Validate()
+            if (true == (model as ModelType)?.Extensions.Get<bool>("fluent-generate-validation"))
+            {
+                return false;
+            }
+
             var typesToValidate = new Stack<IModelType>();
             typesToValidate.Push(model);
             var validatedTypes = new HashSet<IModelType>();
@@ -107,6 +113,12 @@ namespace AutoRest.CSharp
             if (model == null || !Singleton<GeneratorSettingsCs>.Instance.ClientSideValidation)
             {
                 return false;
+            }
+
+            // Generate overriding virtual Validate()
+            if (true == (model as ModelType)?.Extensions.Get<bool>("fluent-generate-validation"))
+            {
+                return true;
             }
 
             var typesToValidate = new Stack<IModelType>();
